@@ -4,58 +4,6 @@ import psycopg2
 import plotly.express as px
 
 # ======================
-# LOGIN SYSTEM
-# ======================
-if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
-
-def login():
-    st.subheader("🔐 Connexion admin" if lang=="Français" else "🔐 Admin login")
-
-    username = st.text_input("Utilisateur" if lang=="Français" else "Username")
-    password = st.text_input("Mot de passe" if lang=="Français" else "Password", type="password")
-
-    if st.button("Se connecter" if lang=="Français" else "Login"):
-        if username == "TsafackThereseFowanMichel-Pharel" and password == "TsafackT@FoMi-Pha":
-            st.session_state["logged_in"] = True
-            st.success("Connexion réussie")
-        else:
-            st.error("Identifiants incorrects")
-
-st.set_page_config(layout="wide")
-
-# ======================
-# CONNECTION
-# ======================
-@st.cache_resource
-def get_conn():
-    return psycopg2.connect(
-        dbname="Africa",
-        user="postgres",
-        password="DanPeFow@3940",
-        host="localhost",
-        port="5432"
-    )
-
-# ======================
-# LOAD DATA
-# ======================
-@st.cache_data
-def load_data():
-    conn = get_conn()
-    df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
-
-    df = df.sort_values(by="id")
-
-    df["year"] = pd.to_numeric(df["year"], errors="coerce")
-    df = df.dropna(subset=["year"])
-    df["year"] = df["year"].astype(int)
-
-    return df
-
-df = load_data()
-
-# ======================
 # LANGUE
 # ======================
 lang = st.sidebar.selectbox("🌐 Language / Langue", ["Français", "English"])
@@ -106,6 +54,60 @@ texts = {
         "success": "Added successfully ✅"
     }
 }
+
+
+
+# ======================
+# LOGIN SYSTEM
+# ======================
+if "logged_in" not in st.session_state:
+    st.session_state["logged_in"] = False
+
+def login():
+    st.subheader("🔐 Connexion admin" if lang=="Français" else "🔐 Admin login")
+
+    username = st.text_input("Utilisateur" if lang=="Français" else "Username")
+    password = st.text_input("Mot de passe" if lang=="Français" else "Password", type="password")
+
+    if st.button("Se connecter" if lang=="Français" else "Login"):
+        if username == "TsafackThereseFowanMichel-Pharel" and password == "TsafackT@FoMi-Pha":
+            st.session_state["logged_in"] = True
+            st.success("Connexion réussie")
+        else:
+            st.error("Identifiants incorrects")
+
+st.set_page_config(layout="wide")
+
+# ======================
+# CONNECTION
+# ======================
+@st.cache_resource
+def get_conn():
+    return psycopg2.connect(
+        dbname=st.secrets["postgres"],
+        user=st.secrets["postgres"],
+        password=st.secrets["TsafackTherese@FowanMichel-Pharel"],
+        host=st.secrets["db.gmpepshnxwdzdjfzhsgk.supabase.co"],
+        port=st.secrets["5432"]
+    )
+
+# ======================
+# LOAD DATA
+# ======================
+@st.cache_data
+def load_data():
+    conn = get_conn()
+    df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
+
+    df = df.sort_values(by="id")
+
+    df["year"] = pd.to_numeric(df["year"], errors="coerce")
+    df = df.dropna(subset=["year"])
+    df["year"] = df["year"].astype(int)
+
+    return df
+
+df = load_data()
 
 # ======================
 # TRADUCTION COLONNES
