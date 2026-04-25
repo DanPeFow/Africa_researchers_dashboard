@@ -93,7 +93,7 @@ def get_conn():
         port=st.secrets["5432"],
         dbname=st.secrets["postgres"],
         user=st.secrets["postgres"],
-        password=st.secrets["TsafackTherese@FowanMichel-Pharel"]
+        password=st.secrets["TsafackT@FowanMichel-Pharel"]
         
         
     )
