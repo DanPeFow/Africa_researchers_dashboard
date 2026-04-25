@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import psycopg2
 import plotly.express as px
-import os
+#import os
 
 # ======================
 # LANGUE
@@ -83,18 +83,20 @@ st.set_page_config(layout="wide")
 # CONNECTION
 # ======================
 
-@st.cache_resource
-def get_conn():
-    return psycopg2.connect(os.environ["postgresql://postgres:[TsafackTherese@FowanMichel-Pharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres"])
 #@st.cache_resource
 #def get_conn():
-    #return psycopg2.connect(
-        #dbname=st.secrets["postgres"],
-        #user=st.secrets["postgres"],
-        #password=st.secrets["TsafackTherese@FowanMichel-Pharel"],
-        #host=st.secrets["db.gmpepshnxwdzdjfzhsgk.supabase.co"],
-        #port=st.secrets["5432"]
-    #)
+    #return psycopg2.connect(os.environ["postgresql://postgres:[TsafackTherese@FowanMichel-Pharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres"])
+@st.cache_resource
+def get_conn():
+    return psycopg2.connect(
+        host=st.secrets["db.gmpepshnxwdzdjfzhsgk.supabase.co"],
+        port=st.secrets["5432"],
+        dbname=st.secrets["postgres"],
+        user=st.secrets["postgres"],
+        password=st.secrets["TsafackTherese@FowanMichel-Pharel"]
+        
+        
+    )
 
 # ======================
 # LOAD DATA
