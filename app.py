@@ -100,6 +100,15 @@ st.set_page_config(layout="wide")
         
         
     #)
+#@st.cache_resource
+#def get_conn():
+    #return psycopg2.connect(
+        #host=st.secrets["postgres"]["host"],
+        #port=st.secrets["postgres"]["port"],
+        #dbname=st.secrets["postgres"]["dbname"],
+        #user=st.secrets["postgres"]["user"],
+        #password=st.secrets["postgres"]["password"]
+    #)
 @st.cache_resource
 def get_conn():
     return psycopg2.connect(
@@ -107,7 +116,8 @@ def get_conn():
         port=st.secrets["postgres"]["port"],
         dbname=st.secrets["postgres"]["dbname"],
         user=st.secrets["postgres"]["user"],
-        password=st.secrets["postgres"]["password"]
+        password=st.secrets["postgres"]["password"],
+        sslmode="require"
     )
 
 # ======================
