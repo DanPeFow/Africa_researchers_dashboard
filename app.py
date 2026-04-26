@@ -90,7 +90,7 @@ st.set_page_config(layout="wide")
 @st.cache_resource
 def get_conn():
     return psycopg2.connect(
-        "postgresql://postgres.gmpepshnxwdzdjfzhsgk:TsafackThereseFowanMichelPharel@aws-1-eu-north-1.pooler.supabase.com:5432/postgres"
+        "postgresql://postgres.gmpepshnxwdzdjfzhsgk:TsafackThereseFowanMichelPharel@aws-1-eu-north-1.pooler.supabase.com:6543/postgres"
     )
 
 #def get_conn():
@@ -138,17 +138,30 @@ def get_conn():
 @st.cache_data
 def load_data():
     conn = get_conn()
-    df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
-
+    conn.rollback()  # 🔥 important
     df = df.sort_values(by="id")
 
+    df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
     df["year"] = pd.to_numeric(df["year"], errors="coerce")
     df = df.dropna(subset=["year"])
     df["year"] = df["year"].astype(int)
-
     return df
-
 df = load_data()
+
+#@st.cache_data
+#def load_data():
+    #conn = get_conn()
+    #df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
+
+    #df = df.sort_values(by="id")
+
+    #df["year"] = pd.to_numeric(df["year"], errors="coerce")
+    #df = df.dropna(subset=["year"])
+    #df["year"] = df["year"].astype(int)
+
+    #return df
+
+#df = load_data()
 
 # ======================
 # TRADUCTION COLONNES
