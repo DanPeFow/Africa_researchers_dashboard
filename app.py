@@ -86,9 +86,9 @@ st.set_page_config(layout="wide")
 #def get_conn():
     #return psycopg2.connect(os.environ["DATABASE_URL"])
 
-@st.cache_resource
-def get_conn():
-    return psycopg2.connect(os.environ["postgresql://postgres:[TsafackT@FowanMichel-Pharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres"])
+#@st.cache_resource
+#def get_conn():
+    #return psycopg2.connect(os.environ["postgresql://postgres:[TsafackT@FowanMichel-Pharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres"])
 #@st.cache_resource
 #def get_conn():
     #return psycopg2.connect(
@@ -100,6 +100,15 @@ def get_conn():
         
         
     #)
+@st.cache_resource
+def get_conn():
+    return psycopg2.connect(
+        host=st.secrets["postgres"]["host"],
+        port=st.secrets["postgres"]["port"],
+        dbname=st.secrets["postgres"]["dbname"],
+        user=st.secrets["postgres"]["user"],
+        password=st.secrets["postgres"]["password"]
+    )
 
 # ======================
 # LOAD DATA
