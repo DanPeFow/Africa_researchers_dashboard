@@ -86,11 +86,17 @@ st.set_page_config(layout="wide")
 #def get_conn():
     #return psycopg2.connect(os.environ["DATABASE_URL"])
 
+#@st.cache_resource
 @st.cache_resource
 def get_conn():
     return psycopg2.connect(
-        "postgresql://postgres:TsafackThereseFowanMichelPharel@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres?sslmode=require"
+        "postgresql://postgres.gmpepshnxwdzdjfzhsgk:TsafackThereseFowanMichelPharel@aws-1-eu-north-1.pooler.supabase.com:5432/postgres"
     )
+
+#def get_conn():
+    #return psycopg2.connect(
+        #"postgresql://postgres:TsafackThereseFowanMichelPharel@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres?sslmode=require"
+    #)
 
 #@st.cache_resource
 #def get_conn():
