@@ -89,7 +89,7 @@ st.set_page_config(layout="wide")
 @st.cache_resource
 def get_conn():
     return psycopg2.connect(
-        "postgresql://postgres:[TsafackThereseFowanMichelPharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres?sslmode=require"
+        "postgresql://postgres:TsafackThereseFowanMichelPharel@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres?sslmode=require"
     )
 
 #@st.cache_resource
