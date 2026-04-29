@@ -11,7 +11,7 @@ lang = st.sidebar.selectbox("🌐 Language / Langue", ["Français", "English"])
 
 texts = {
     "Français": {
-        "title": "🌍 Dashboard Chercheurs Diaspora",
+        "title": "🌍 Dashboard Chercheurs Africain",
         "origin": "Pays d'origine",
         "destination": "Pays d'accueil",
         "all": "Tous",
@@ -141,7 +141,7 @@ def load_data():
     conn.rollback()  # 🔥 important
     df = df.sort_values(by="id")
 
-    df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
+    df = pd.read_sql("SELECT * FROM africa_researchers;", conn)
     df["year"] = pd.to_numeric(df["year"], errors="coerce")
     df = df.dropna(subset=["year"])
     df["year"] = df["year"].astype(int)
@@ -151,7 +151,7 @@ df = load_data()
 #@st.cache_data
 #def load_data():
     #conn = get_conn()
-    #df = pd.read_sql("SELECT * FROM Africa_researchers;", conn)
+    #df = pd.read_sql("SELECT * FROM africa_researchers;", conn)
 
     #df = df.sort_values(by="id")
 
@@ -328,7 +328,7 @@ with st.form("form_unique"):
         cur = conn.cursor()
 
         cur.execute("""
-            INSERT INTO Africa_researchers
+            INSERT INTO africa_researchers
             (first_name, last_name, country_origin, country_current, institution, discipline, year)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
         """, (first_name, last_name, country_origin, country_current, institution, discipline, year))
