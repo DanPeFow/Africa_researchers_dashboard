@@ -137,16 +137,32 @@ def get_conn():
 # ======================
 @st.cache_data
 def load_data():
-    conn = get_conn()
-    conn.rollback()  # 🔥 important
-    df = df.sort_values(by="id")
+    try:
+        conn = get_conn()
+        df = pd.read_sql("SELECT * FROM africa_researchers;", conn)
 
-    df = pd.read_sql("SELECT * FROM africa_researchers;", conn)
-    df["year"] = pd.to_numeric(df["year"], errors="coerce")
-    df = df.dropna(subset=["year"])
-    df["year"] = df["year"].astype(int)
-    return df
-df = load_data()
+        if df.empty:
+            return df
+
+        df = df.sort_values(by="id")
+        return df
+
+    except Exception as e:
+        st.error(f"Erreur base de données : {e}")
+        return pd.DataFrame()
+
+#@st.cache_data
+#def load_data():
+    #conn = get_conn()
+    #conn.rollback()  # 🔥 important
+    #df = df.sort_values(by="id")
+
+    #df = pd.read_sql("SELECT * FROM africa_researchers;", conn)
+    #df["year"] = pd.to_numeric(df["year"], errors="coerce")
+    #df = df.dropna(subset=["year"])
+    #df["year"] = df["year"].astype(int)
+    #return df
+#df = load_data()
 
 #@st.cache_data
 #def load_data():
