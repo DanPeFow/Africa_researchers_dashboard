@@ -274,7 +274,10 @@ st.dataframe(df_table, use_container_width=True, hide_index=True)
 df_year = df_filtered.groupby("year").size().reset_index(name="total")
 
 fig1 = px.line(df_year, x="year", y="total", markers=True,
-               title=texts[lang]["evolution"])
+               title=texts[lang]["evolution"],labels={
+        "year": texts[lang]["year"],
+        "total": texts[lang]["total"]
+    })
 
 fig1.update_layout(
     xaxis=dict(type='category'),  # 🔥 FIX CRUCIAL
