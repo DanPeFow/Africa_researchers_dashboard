@@ -150,6 +150,7 @@ def load_data():
     except Exception as e:
         st.error(f"Erreur base de données : {e}")
         return pd.DataFrame()
+df = load_data()
 
 #@st.cache_data
 #def load_data():
