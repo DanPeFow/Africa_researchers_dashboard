@@ -270,6 +270,7 @@ st.dataframe(df_table, use_container_width=True, hide_index=True)
 # ======================
 # EVOLUTION (ANNÉES FIXES)
 # ======================
+
 df_year = df_filtered.groupby("year").size().reset_index(name="total")
 
 fig1 = px.line(df_year, x="year", y="total", markers=True,
@@ -285,14 +286,32 @@ st.plotly_chart(fig1, use_container_width=True)
 # ======================
 # COUNTRY
 # ======================
+
 df_country = df_filtered.groupby("country_current").size().reset_index(name="total")
 
-fig2 = px.bar(df_country, x="country_current", y="total",
-              title=texts[lang]["country"])
+fig2 = px.bar(
+    df_country,
+    x="country_current",
+    y="total",
+    title=texts[lang]["country"],
+    labels={
+        "country_current": texts[lang]["country"],
+        "total": texts[lang]["total"]
+    }
+)
 
 fig2.update_yaxes(tickmode="linear", dtick=1, tickformat=",d")
 
 st.plotly_chart(fig2, use_container_width=True)
+
+#df_country = df_filtered.groupby("country_current").size().reset_index(name="total")
+
+#fig2 = px.bar(df_country, x="country_current", y="total",
+              #title=texts[lang]["country"])
+
+#fig2.update_yaxes(tickmode="linear", dtick=1, tickformat=",d")
+
+#st.plotly_chart(fig2, use_container_width=True)
 
 # ======================
 # DISCIPLINE
