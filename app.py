@@ -95,7 +95,7 @@ st.markdown(f"""
 {texts[lang]["description"]}
 """)
 
-#st.markdown("---")
+st.markdown("---")
 
 
 # ======================
@@ -303,7 +303,7 @@ columns_translation = {
 # ======================
 # TITLE
 # ======================
-st.title(texts[lang]["title"])
+#st.title(texts[lang]["title"])
 
 # ======================
 # FILTERS
