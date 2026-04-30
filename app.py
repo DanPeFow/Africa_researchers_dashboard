@@ -87,7 +87,7 @@ Data can be filtered.
 # =======================
 # INTRODUCTION
 # =======================
-st.title(texts[lang]["title"])
+#st.title(texts[lang]["title"])
 
 st.markdown(f"""
 ### {texts[lang]["about"]}
