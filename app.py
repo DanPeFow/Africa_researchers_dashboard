@@ -10,7 +10,7 @@ import os
 # =======================
 texts = {
     "Français": {
-        "title": "🌍 Dashboard Chercheurs Africain",
+        "title": "🌍 Dashboard Chercheurs Africains",
         "description": """
 Cette plateforme permet de visualiser la mobilité des chercheurs africains à travers le monde.
 
@@ -21,7 +21,7 @@ Vous pouvez explorer :
 
 Les données peuvent être filtrées.
         """,
-        ...
+        "about": "📖 Présentation"
     },
     "English": {
         "title": "🌍 African Researchers Dashboard",
@@ -35,10 +35,9 @@ You can analyze:
 
 Data can be filtered.
         """,
-        ...
+        "about": "📖 About"
     }
 }
-
 
 st.markdown(f"""
 ### 📖 { "Présentation" if lang=="Français" else "About" }
