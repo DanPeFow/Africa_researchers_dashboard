@@ -4,6 +4,49 @@ import psycopg2
 import plotly.express as px
 import os
 
+
+# =======================
+#Introduction
+# =======================
+texts = {
+    "Français": {
+        "title": "🌍 Dashboard Chercheurs Africain",
+        "description": """
+Cette plateforme permet de visualiser la mobilité des chercheurs africains à travers le monde.
+
+Vous pouvez explorer :
+- les pays d'origine et d'accueil
+- les disciplines
+- l'évolution dans le temps
+
+Les données peuvent être filtrées.
+        """,
+        ...
+    },
+    "English": {
+        "title": "🌍 African Researchers Dashboard",
+        "description": """
+This platform allows you to explore the mobility of African researchers worldwide.
+
+You can analyze:
+- origin and host countries
+- disciplines
+- trends over time
+
+Data can be filtered.
+        """,
+        ...
+    }
+}
+
+
+st.markdown(f"""
+### 📖 { "Présentation" if lang=="Français" else "About" }
+
+{texts[lang]["description"]}
+""")
+
+
 # ======================
 # LANGUE
 # ======================
