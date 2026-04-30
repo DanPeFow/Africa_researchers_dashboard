@@ -5,12 +5,19 @@ import plotly.express as px
 import os
 
 
+# ======================
+# LANGUE (TOUJOURS EN PREMIER)
+# ======================
+lang = st.sidebar.selectbox("🌐 Language / Langue", ["Français", "English"])
+
+
 # =======================
-#Introduction
+# TEXTES (UN SEUL DICTIONNAIRE)
 # =======================
 texts = {
     "Français": {
         "title": "🌍 Dashboard Chercheurs Africains",
+        "about": "📖 Présentation",
         "description": """
 Cette plateforme permet de visualiser la mobilité des chercheurs africains à travers le monde.
 
@@ -21,39 +28,6 @@ Vous pouvez explorer :
 
 Les données peuvent être filtrées.
         """,
-        "about": "📖 Présentation"
-    },
-    "English": {
-        "title": "🌍 African Researchers Dashboard",
-        "description": """
-This platform allows you to explore the mobility of African researchers worldwide.
-
-You can analyze:
-- origin and host countries
-- disciplines
-- trends over time
-
-Data can be filtered.
-        """,
-        "about": "📖 About"
-    }
-}
-
-st.markdown(f"""
-### 📖 { "Présentation" if lang=="Français" else "About" }
-
-{texts[lang]["description"]}
-""")
-
-
-# ======================
-# LANGUE
-# ======================
-lang = st.sidebar.selectbox("🌐 Language / Langue", ["Français", "English"])
-
-texts = {
-    "Français": {
-        "title": "🌍 Dashboard Chercheurs Africain",
         "origin": "Pays d'origine",
         "destination": "Pays d'accueil",
         "all": "Tous",
@@ -76,6 +50,17 @@ texts = {
     },
     "English": {
         "title": "🌍 African Researchers Dashboard",
+        "about": "📖 About",
+        "description": """
+This platform allows you to explore the mobility of African researchers worldwide.
+
+You can analyze:
+- origin and host countries
+- disciplines
+- trends over time
+
+Data can be filtered.
+        """,
         "origin": "Origin country",
         "destination": "Host country",
         "all": "All",
@@ -97,6 +82,73 @@ texts = {
         "success": "Added successfully ✅"
     }
 }
+
+
+# =======================
+# INTRODUCTION
+# =======================
+st.title(texts[lang]["title"])
+
+st.markdown(f"""
+### {texts[lang]["about"]}
+
+{texts[lang]["description"]}
+""")
+
+st.markdown("---")
+
+
+# ======================
+# LANGUE
+# ======================
+#lang = st.sidebar.selectbox("🌐 Language / Langue", ["Français", "English"])
+
+#texts = {
+    #"Français": {
+        #"title": "🌍 Dashboard Chercheurs Africain",
+        #"origin": "Pays d'origine",
+        #"destination": "Pays d'accueil",
+        #"all": "Tous",
+        #"table": "Tableau des données",
+        #"evolution": "Évolution annuelle",
+        #"country": "Pays d'accueil",
+        #"discipline": "Disciplines",
+        #"total": "Total chercheurs",
+        #"countries": "Nombre de pays",
+        #"disc": "Disciplines",
+        #"form": "📝 Ajouter un chercheur",
+        #"first": "Prénom",
+        #"last": "Nom",
+        #"origin_f": "Pays d'origine",
+        #"dest_f": "Pays d'accueil",
+        #"inst": "Institution",
+        #"year": "Année",
+        #"add": "Ajouter",
+        #"success": "Ajout réussi ✅"
+    #},
+    #"English": {
+        #"title": "🌍 African Researchers Dashboard",
+        #"origin": "Origin country",
+        #"destination": "Host country",
+        #"all": "All",
+        #"table": "Data table",
+        #"evolution": "Yearly evolution",
+        #"country": "Host countries",
+        #"discipline": "Disciplines",
+        #"total": "Total researchers",
+        #"countries": "Number of countries",
+        #"disc": "Disciplines",
+        #"form": "📝 Add researcher",
+        #"first": "First Name",
+        #"last": "Last Name",
+        #"origin_f": "Origin Country",
+        #"dest_f": "Host Country",
+        #"inst": "Institution",
+        #"year": "Year",
+        #"add": "Add",
+       # "success": "Added successfully ✅"
+    #}
+#}
 
 
 
