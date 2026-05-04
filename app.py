@@ -447,7 +447,7 @@ with st.form("form_unique"):
 
     # 📧 EMAIL (OPTIONNEL)
     email = st.text_input(
-        "Adresse email (optionel) " if lang=="Français" else "Email adress(optional)"
+        "Adresse email (optionel) " if lang=="Français" else "Email adress (optional)"
     )
 
     submitted = st.form_submit_button(texts[lang]["add"])
