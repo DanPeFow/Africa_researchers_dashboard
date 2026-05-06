@@ -182,49 +182,15 @@ st.set_page_config(layout="wide")
 
 #@st.cache_resource
 @st.cache_resource
+#def get_conn():
+    #return psycopg2.connect(
+        #"postgresql://postgres.gmpepshnxwdzdjfzhsgk:TsafackThereseFowanMichelPharel@aws-1-eu-north-1.pooler.supabase.com:6543/postgres"
+    #)
 def get_conn():
     return psycopg2.connect(
-        "postgresql://postgres.gmpepshnxwdzdjfzhsgk:TsafackThereseFowanMichelPharel@aws-1-eu-north-1.pooler.supabase.com:6543/postgres"
+        os.getenv("DATABASE_URL")
     )
 
-#def get_conn():
-    #return psycopg2.connect(
-        #"postgresql://postgres:TsafackThereseFowanMichelPharel@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres?sslmode=require"
-    #)
-
-#@st.cache_resource
-#def get_conn():
-    #return psycopg2.connect(os.environ["postgresql://postgres:[TsafackT@FowanMichel-Pharel]@db.gmpepshnxwdzdjfzhsgk.supabase.co:5432/postgres"])
-#@st.cache_resource
-#def get_conn():
-    #return psycopg2.connect(
-        #host=st.secrets["db.gmpepshnxwdzdjfzhsgk.supabase.co"],
-        #port=st.secrets["5432"],
-        #dbname=st.secrets["postgres"],
-        #user=st.secrets["postgres"],
-        #password=st.secrets["TsafackT@FowanMichel-Pharel"]
-        
-        
-    #)
-#@st.cache_resource
-#def get_conn():
-    #return psycopg2.connect(
-        #host=st.secrets["postgres"]["host"],
-        #port=st.secrets["postgres"]["port"],
-        #dbname=st.secrets["postgres"]["dbname"],
-        #user=st.secrets["postgres"]["user"],
-        #password=st.secrets["postgres"]["password"]
-    #)
-#@st.cache_resource
-#def get_conn():
-    #return psycopg2.connect(
-        #host=st.secrets["postgres"]["host"],
-        #port=st.secrets["postgres"]["port"],
-        #dbname=st.secrets["postgres"]["dbname"],
-        #user=st.secrets["postgres"]["user"],
-        #password=st.secrets["postgres"]["password"],
-        #sslmode="require"
-    #)
 
 # ======================
 # LOAD DATA
